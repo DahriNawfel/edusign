@@ -30,7 +30,7 @@ Clone the repository and install the necessary dependencies:
 
 ```bash
 git clone https://github.com/Edusign/app-boilerplate
-cd app-boilerplate
+cd edusign
 npm install
 ```
 
@@ -68,7 +68,7 @@ Nothing will happen until the application receives a POST call on an `install`, 
 Here is an overview of the project's file structure:
 
 ```
-app-boilerplate/
+edusign/
 ├── dist/
 ├── tests/
 ├── src/
