@@ -3,7 +3,7 @@ import { Router } from 'express';
 import home from './home';
 import install from './install';
 import uninstall from './uninstall';
-import users from './users';
+import create from './create';
 import hmacValidatorMiddleware from '@middlewares/hmacValidator';
 import parametersMiddleware from '@middlewares/parameters';
 import edusignApiMiddleware from '@middlewares/edusignApi';
@@ -18,7 +18,7 @@ import { r } from '@faker-js/faker/dist/airline-CBNP41sR';
 const router = Router();
 
 router.post('/', edusignApiMiddleware, hmacValidatorMiddleware, parametersMiddleware, home);
-router.post('/users', hmacValidatorMiddleware, users);
+router.post('/users', hmacValidatorMiddleware, create);
 router.post('/install', install);
 router.post('/uninstall', hmacValidatorMiddleware, uninstall);
 
