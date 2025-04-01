@@ -22,16 +22,47 @@ export default async function CreateEvent(req: Request, res: Response, next: Nex
     blocksApi.Title('title', 'Créer un nouvel événement');
     blocksApi.Text('subheader', `École: ${schoolId}`);
     
-    blocksApi.Text('name_label', 'Nom de l\'événement:');
-    blocksApi.Text('description_label', 'Description de l\'événement:');
-    blocksApi.Text('date_label', 'Date de l\'événement:');
+    blocksApi.Divider('divider1');
     
-    blocksApi.Text('name_placeholder', '________________');
-    blocksApi.Text('description_placeholder', '________________');
-    blocksApi.Text('date_placeholder', '________________');
+
+    blocksApi.Form(
+      "createForm",
+      [
+          {
+              type: "input",
+              name: "my-input",
+              label: "Titre de l'événement",
+              placeholder: "Titre",
+              value:  "",
+          },
+          {
+              type: "datepicker",
+              name: "my-datepicker",
+              label: "Date de l'événement",
+              value: new Date().toISOString(),
+          },
+          {
+              type: "input",
+              name: "hour-input",
+              label: "Heure de l'événement",
+              placeholder: "17h00-19h00",
+              value:  "",
+          },
+          {
+              type: "textarea",
+              name: "my-textarea",
+              label: "Description de l'événement",
+              value:  "",
+          },
+      ],
+      {
+          name: "submit",
+          label: "Submit",
+          style: "secondary",
+      },
+      "https://03d8-37-169-169-15.ngrok-free.app/v1/allEvents"
+  );
     
-    // blocksApi.Button('submitButton', 'primary', 'Créer l\'événement', `/api/schools/${schoolId}/events/create`);
-    // blocksApi.Button('cancelButton', 'secondary', 'Annuler', `/api/schools/${schoolId}/dashboard`);
     res.send(blocksApi.toJson());
   } catch (error) {
     logger.error('Erreur lors de l\'affichage du formulaire d\'événement:', error);

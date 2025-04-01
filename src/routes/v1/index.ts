@@ -5,6 +5,7 @@ import install from './install';
 import uninstall from './uninstall';
 import create from './create';
 import hmacValidatorMiddleware from '@middlewares/hmacValidator';
+import HandleEventFormSubmission from './ListEvent';
 import parametersMiddleware from '@middlewares/parameters';
 import edusignApiMiddleware from '@middlewares/edusignApi';
 import { r } from '@faker-js/faker/dist/airline-CBNP41sR';
@@ -18,7 +19,10 @@ import { r } from '@faker-js/faker/dist/airline-CBNP41sR';
 const router = Router();
 
 router.post('/', edusignApiMiddleware, hmacValidatorMiddleware, parametersMiddleware, home);
-router.post('/users', hmacValidatorMiddleware, create);
+router.post('/create', hmacValidatorMiddleware, create);
+router.post('/allEvents', (req, res, next) => {
+	HandleEventFormSubmission(req, res, next).catch(next);
+});
 router.post('/install', install);
 router.post('/uninstall', hmacValidatorMiddleware, uninstall);
 
